@@ -1,0 +1,13 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import "partials/vars";
+@import 'sass-bootstrap/lib/bootstrap';
+@import "partials/mixins";
+@import "partials/general";
+@import "partials/logo";
+
+
+.logocolor {
+  background: #595959;
+  border: 1px solid darken(#595959,15%);
+}

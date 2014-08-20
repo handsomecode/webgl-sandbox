@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Particles - shapes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <style>
+    body {
+      font-family: Monospace;
+      color: #aaa;
+      background-color: #000;
+      margin: 0px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<script type="x-shader/x-vertex" id="vertexshader">
+
+				attribute float size;
+				attribute vec3 pcolor;
+
+				varying vec3 vColor;
+
+				void main() {
+
+					vColor = pcolor;
+
+					vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+					gl_PointSize = size * ( 200.0 / length( mvPosition.xyz ) );
+
+					gl_Position = projectionMatrix * mvPosition;
+
+				}
+
+
+
+
+</script>
+
+<script type="x-shader/x-fragment" id="fragmentshader">
+
+				uniform sampler2D texture;
+
+				varying vec3 vColor;
+
+				void main() {
+
+					vec4 outColor = texture2D( texture, gl_PointCoord );
+
+					gl_FragColor = outColor * vec4( vColor, 1.0 );
+
+				}
+
+
+
+
+</script>
+
+<!-- build:js scripts/test_vendor.js -->
+<!-- bower:js -->
+<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+
+<script src="bower_components/threejs/build/three.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/test_plugins.js -->
+<script src="scripts/utils/stats.min.js"></script>
+<script src="scripts/utils/tween.min.js"></script>
+<script src="scripts/utils/Sparks.js"></script>
+
+<script src="scripts/utils/shaders/CopyShader.js"></script>
+<script src="scripts/utils/shaders/FilmShader.js"></script>
+<script src="scripts/utils/shaders/FocusShader.js"></script>
+<script src="scripts/utils/shaders/HorizontalBlurShader.js"></script>
+<script src="scripts/utils/shaders/TriangleBlurShader.js"></script>
+<script src="scripts/utils/shaders/VerticalBlurShader.js"></script>
+
+<script src="scripts/utils/postprocessing/EffectComposer.js"></script>
+<script src="scripts/utils/postprocessing/RenderPass.js"></script>
+<script src="scripts/utils/postprocessing/ShaderPass.js"></script>
+<script src="scripts/utils/postprocessing/MaskPass.js"></script>
+<script src="scripts/utils/postprocessing/BloomPass.js"></script>
+<script src="scripts/utils/postprocessing/FilmPass.js"></script>
+<!-- load the font file from canvas-text -->
+
+
+<script src="scripts/utils/helvetiker_regular.typeface.js"></script>
+<!-- endbuild -->
+
+<!-- build:js(.tmp) scripts/test.js -->
+<script src="scripts/intro.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

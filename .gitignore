@@ -1,0 +1,16 @@
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+test/bower_components
+.
+.idea
+
+app/.DS_Store
+
+app/images/.DS_Store
+
+app/.DS_Store
+tmp
+.DS_Store

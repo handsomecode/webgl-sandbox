@@ -1,0 +1,115 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Intro | Handsome logo</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- _build_:css styles/intro_vendor.css -->
+  <!-- _bower_:css -->
+  <!-- _endbower_ -->
+  <!-- _endbuild_ -->
+  <!-- build:css(.tmp) styles/intro_main.css -->
+  <link rel="stylesheet" href="bower_components/jqueryui/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+
+  <script type="x-shader/x-vertex" id="vertexshader">
+
+				attribute float size;
+				attribute vec3 pcolor;
+
+				varying vec3 vColor;
+
+				void main() {
+
+					vColor = pcolor;
+
+					vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+					gl_PointSize = size * ( 200.0 / length( mvPosition.xyz ) );
+
+					gl_Position = projectionMatrix * mvPosition;
+
+				}
+
+			</script>
+
+  <script type="x-shader/x-fragment" id="fragmentshader">
+
+				uniform sampler2D texture;
+
+				varying vec3 vColor;
+
+				void main() {
+
+					vec4 outColor = texture2D( texture, gl_PointCoord );
+
+					gl_FragColor = outColor * vec4( vColor, 1.0 );
+
+				}
+
+			</script>
+</head>
+<body>
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div id="ThreeJS"></div>
+
+
+<!-- build:js scripts/intro_vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/jqueryui/ui/minified/jquery-ui.min.js"></script>
+<script src="bower_components/threejs/build/three.js"></script>
+<!--FONT-->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+  (function (b, o, i, l, e, r) {
+    b.GoogleAnalyticsObject = l;
+    b[l] || (b[l] =
+        function () {
+          (b[l].q = b[l].q || []).push(arguments)
+        });
+    b[l].l = +new Date;
+    e = o.createElement(i);
+    r = o.getElementsByTagName(i)[0];
+    e.src = '//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e, r)
+  }(window, document, 'script', 'ga'));
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
+
+<!-- build:js scripts/intro_plugins.js -->
+<script type="text/javascript" src="scripts/utils/OrbitControls.js"></script>
+<script type="text/javascript" src="scripts/utils/THREEx.WindowResize.js"></script>
+<script type="text/javascript" src="scripts/utils/THREEx.FullScreen.js"></script>
+<script type="text/javascript" src="scripts/utils/THREEx.KeyboardState.js"></script>
+
+<script type="text/javascript" src="scripts/utils/csg.js"></script>
+<script type="text/javascript" src="scripts/utils/ThreeCSG.js"></script>
+
+<!-- endbuild -->
+
+<!-- build:js(.tmp) scripts/intro_formated.js -->
+<script src="scripts/intro_formated.js"></script>
+<!-- endbuild -->
+</body>
+</html>
